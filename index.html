@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trilha dos Doces</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__content">
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://servidor-estaticos-ashy.vercel.app/trilhadoces.svg" alt="Trilha dos Doces" />
+        </a>
+        <h2>Trilha dos doces</h1>
+      </div>
+      <nav class="nav">
+        <a href="#sobre">Sobre</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="login.html" class="btn btn--outline">Entrar</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero__overlay">
+        <div class="container hero__content">
+          <h1>
+            Nos acompanhe na trilha dos doces e encontre um saboroso tesouro
+          </h1>
+          <p>
+            Oferecemos diversos sabores irresistíveis para deixar sua vida
+            mais gostosa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sobre" id="sobre">
+      <div class="container">
+        <h2>Sobre Nós</h2>
+        <p class="section__text">
+          A Trilha dos Doces é uma confeitaria especializada em kits para
+          festas, bolos, salgados e sobremesas, unindo sabor, praticidade e
+          apresentação caprichada.
+        </p>
+        <p class="section__text">
+          Com foco em comemorações inesquecíveis, oferecemos doces
+          personalizados preparados com ingredientes selecionados e atenção
+          aos detalhes.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--produtos" id="produtos">
+      <div class="container">
+        <h2>O melhor da Trilha dos doces</h2>
+        <div class="cards">
+          <article class="card-produto">
+            <div class="card-produto__img">
+              <img src="https://servidor-estaticos-ashy.vercel.app/cupcake.png" alt="Cupcakes" />
+            </div>
+            <div class="card-produto__body">
+              <h3>CupCakes</h3>
+              <p>Adoce seu dia com nossos cupcakes irresistíveis</p>
+              <a href="pedido.html" class="btn btn--primary">Comprar</a>
+            </div>
+          </article>
+
+          <article class="card-produto">
+            <div class="card-produto__img">
+              <img src="https://servidor-estaticos-ashy.vercel.app/salgados.png" alt="Salgadinhos" />
+            </div>
+            <div class="card-produto__body">
+              <h3>Salgados</h3>
+              <p>saboreie salgados quentinhos e crocantes</p>
+              <a href="pedido.html" class="btn btn--primary">Comprar</a>
+            </div>
+          </article>
+
+          <article class="card-produto">
+            <div class="card-produto__img">
+              <img src="https://servidor-estaticos-ashy.vercel.app/bolo.png" alt="Bolo Confeitado" />
+            </div>
+            <div class="card-produto__body">
+              <h3>Bolos Confeitados</h3>
+              <p>celebre momentos especiais com bolos confeitados artesanais</p>
+              <a href="pedido.html" class="btn btn--primary">Comprar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--regras" id="cake-design">
+      <div class="container">
+        <h2>🎂 Cake Design</h2>
+        <p class="section__text">
+          Monte seu bolo dos sonhos! Escolha cada detalhe: massa, recheio, cobertura e decoração.
+        </p>
+
+        <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 2rem;">
+          <div class="card-info">
+            <div class="card-info__icon">🍰</div>
+            <h3>Massas</h3>
+            <p>Red Velvet, Pão de Ló, Chocolate, Baunilha e mais</p>
+          </div>
+
+          <div class="card-info">
+            <div class="card-info__icon">🍓</div>
+            <h3>Recheios</h3>
+            <p>Pistache, Ninho com Morango, Doce de Leite, Nozes</p>
+          </div>
+
+          <div class="card-info">
+            <div class="card-info__icon">🎨</div>
+            <h3>Coberturas</h3>
+            <p>Ganache, Chantilly, Buttercream, Merengue</p>
+          </div>
+
+          <div class="card-info">
+            <div class="card-info__icon">✨</div>
+            <h3>Decoração</h3>
+            <p>Toppers, Flores, Imagens Comestíveis e muito mais</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top: 3rem;">📋 Como Funcionam Nossos Pedidos</h2>
+
+        <div class="regras-grid">
+          <div class="regra-item">
+            <span class="regra-numero">1</span>
+            <div>
+              <h3>Prazo de Produção</h3>
+              <p>Bolos simples: 24-48h | Cake Design: 72h | Salgados: 24h</p>
+            </div>
+          </div>
+
+          <div class="regra-item">
+            <span class="regra-numero">2</span>
+            <div>
+              <h3>Salgados em Pacotes</h3>
+              <p>Vendemos apenas em pacotes fechados de no minimo 25 unidades</p>
+            </div>
+          </div>
+
+          <div class="regra-item">
+            <span class="regra-numero">3</span>
+            <div>
+              <h3>Formas de Pagamento</h3>
+              <p>PIX, Dinheiro ou Cartão na retirada</p>
+            </div>
+          </div>
+
+          <div class="regra-item">
+            <span class="regra-numero">4</span>
+            <div>
+              <h3>Retirada e Entrega</h3>
+              <p>Retirada na loja ou entrega em Praia Grande e região</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--avaliacoes" id="avaliacoes">
+      <div class="container">
+        <h2>O que nossos clientes dizem sobre nossos produtos</h2>
+        <div class="cards cards--avaliacoes">
+          <article class="card-avaliacao">
+            <p class="card-avaliacao__texto">
+              "Ótimo atendimento e sobremesa incrível, com certeza vou per
+              de novo”
+            </p>
+            <p class="card-avaliacao__autor">Jussara Amorim</p>
+          </article>
+
+          <article class="card-avaliacao">
+            <p class="card-avaliacao__texto">
+              “Os cupcakes são deliciosos e super bem apresentados.”
+            </p>
+            <p class="card-avaliacao__autor">Marcio Galvão</p>
+          </article>
+
+          <article class="card-avaliacao">
+            <p class="card-avaliacao__texto">
+              “Experiência maravilhosa, recomendo para qualquer festa.”
+            </p>
+            <p class="card-avaliacao__autor">Pedro Brinkmman</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contato" id="contato">
+      <h2>Contato</h2>
+      <div class="container contato__grid">
+        <div class="contato__mapa">
+          <img src="https://servidor-estaticos-ashy.vercel.app/mapatd.png" alt="localização">
+        </div>
+
+        <div class="contato__form">
+          <h2>Fale conosco</h2>
+          <form>
+            <label>
+              Nome Completo
+              <input type="text" name="nome" placeholder="Seu nome aqui" required />
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" placeholder="Seu melhor e-mail aqui" required />
+            </label>
+
+            <label>
+              O que você quer falar conosco?
+              <textarea name="mensagem" rows="4" placeholder="Sua mensagem aqui" required></textarea>
+            </label>
+
+            <button type="submit" class="btn btn--primary">
+              Enviar mensagem
+            </button>
+          </form>
+
+          <p class="contato__info">
+            Tel.: (13) 99124-4978 | Email: contato@trilhadosdoces.com.br
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__content">
+      <p>© 2025 Trilha dos doces - Todos os direitos reservados.</p>
+      <div class="footer__social">
+        <a href="https://wa.me/1399125586" aria-label="WhatsApp"><img
+            src="https://servidor-estaticos-ashy.vercel.app/zapmono.svg" alt="" /></a>
+        <a href="https://instagram.com" aria-label="Instagram"><img
+            src="https://servidor-estaticos-ashy.vercel.app/instamono.svg" alt="" /></a>
+        <a href="https://facebook.ocm" aria-label="Facebook"><img
+            src="https://servidor-estaticos-ashy.vercel.app/facebookmono.svg" alt="" /></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+
+</body>
+
+</html>
