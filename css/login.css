@@ -1,0 +1,94 @@
+/* Layout geral da tela de login */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(
+      rgba(255, 250, 242, 0.5),
+      rgba(255, 250, 242, 0.5)
+    ),
+    url("https://servidor-estaticos-ashy.vercel.app/cherry.png") center/cover fixed;
+}
+
+/* Card principal de login */
+.login-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-grande);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: clamp(1.8rem, 3vw, 2.4rem);
+  width: min(420px, 100%);
+  text-align: center;
+}
+
+/* Cabeçalho do card */
+.login-card__header img {
+  width: 90px;
+  margin-inline: auto;
+  margin-bottom: var(--space-sm);
+}
+
+.login-card__header h1 {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  color: var(--cor-marrom);
+  margin-bottom: var(--space-xs);
+}
+
+.login-card__header p {
+  font-size: 0.9rem;
+  color: #7a6a55;
+}
+
+/* Formulário */
+.login-form {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  text-align: left;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.login-form input {
+  padding: 0.7rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #ddd0b5;
+  font: inherit;
+}
+
+.login-form input:focus {
+  outline: 2px solid var(--cor-amarelo);
+  border-color: transparent;
+}
+
+.login-form button {
+  margin-top: var(--space-md);
+  width: 100%;
+}
+
+/* Mensagem de erro */
+.login-form__alert {
+  margin-top: var(--space-sm);
+  min-height: 1.2rem;
+  font-size: 0.85rem;
+  color: #b3261e;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .login-card {
+    border-radius: var(--radius-medio);
+    padding: 1.5rem;
+  }
+
+  .login-card__header img {
+    width: 70px;
+  }
+}
