@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Trilha dos Doces</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+</head>
+
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="container admin-header__content">
+      <h1>🔧 Painel Administrativo</h1>
+      <div class="admin-header__user">
+        <span id="adminNome">Admin</span>
+        <button onclick="Auth.logout()">🚪 Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="admin-tabs">
+    <div class="container admin-tabs__content">
+      <button class="admin-tab active" data-tab="dashboard">
+        📊 Dashboard
+      </button>
+      <button class="admin-tab" data-tab="produtos">📦 Produtos</button>
+      <button class="admin-tab" data-tab="pedidos">📋 Pedidos</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="admin-section active" id="dashboard-section">
+      <h2 style="color: var(--cor-marrom); margin-bottom: 1.5rem">
+        Visão Geral
+      </h2>
+
+      <div class="dashboard-grid" id="dashboardCards">
+        <!-- Cards serão inseridos via JS -->
+      </div>
+
+      <div class="admin-table-container">
+        <h2>📈 Pedidos Recentes</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="pedidosRecentes">
+            <tr>
+              <td colspan="5" style="text-align: center; color: #7a6a55">
+                Carregando...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-section" id="produtos-section">
+      <div class="admin-table-header">
+        <h2>📦 Gestão de Produtos</h2>
+        <button class="btn btn--primary" id="btnNovoProduto">
+          + Novo Produto
+        </button>
+      </div>
+
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaProdutosAdmin">
+            <tr>
+              <td colspan="6" style="text-align: center; color: #7a6a55">
+                Carregando produtos...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-section" id="pedidos-section">
+      <h2 style="color: var(--cor-marrom); margin-bottom: 1.5rem">
+        📋 Gestão de Pedidos
+      </h2>
+
+      <div class="pedidos-filters" id="filtrosPedidos">
+        <button class="filter-btn active" data-status="todos">Todos</button>
+        <button class="filter-btn" data-status="pendente">Pendentes</button>
+        <button class="filter-btn" data-status="confirmado">
+          Confirmados
+        </button>
+        <button class="filter-btn" data-status="preparando">
+          Em Preparo
+        </button>
+        <button class="filter-btn" data-status="pronto">Prontos</button>
+        <button class="filter-btn" data-status="entregue">Entregues</button>
+      </div>
+
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>Telefone</th>
+              <th>Total</th>
+              <th>Pagamento</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaPedidosAdmin">
+            <tr>
+              <td colspan="8" style="text-align: center; color: #7a6a55">
+                Carregando pedidos...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-overlay" id="modalProduto">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 id="modalProdutoTitulo">Novo Produto</h2>
+        <button class="modal__close" id="fecharModalProdutoX">×</button>
+      </div>
+
+      <div class="modal__body">
+        <form id="formProduto">
+          <input type="hidden" id="produtoId" />
+
+          <div class="form-group">
+            <label>Nome do Produto *</label>
+            <input type="text" id="produtoNome" required />
+          </div>
+
+          <div class="form-group">
+            <label>Descrição</label>
+            <textarea id="produtoDescricao" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Preço (R$) *</label>
+            <input type="number" id="produtoPreco" step="0.01" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label>URL da Imagem</label>
+            <input type="url" id="produtoImagem" placeholder="https://exemplo.com/imagem.jpg" />
+          </div>
+
+          <div class="form-group">
+            <label>Categoria</label>
+            <select id="produtoCategoria">
+              <option value="Bolos">Bolos</option>
+              <option value="Salgados">Salgados</option>
+              <option value="Doces">Doces</option>
+              <option value="Bebidas">Bebidas</option>
+              <option value="Kits">Kits Festa</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="produtoAtivo" checked />
+              Produto Ativo
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn--outline" id="cancelarModalProduto">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn--primary">
+              Salvar Produto
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>
