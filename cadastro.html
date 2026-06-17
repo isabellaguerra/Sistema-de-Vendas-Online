@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Trilha dos Doces</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <main class="login-page">
+    <section class="login-card">
+      <div class="login-card__header">
+        <a href="index.html">
+          <img src="https://servidor-estaticos-ashy.vercel.app/trilhadoces.svg" alt="Trilha dos Doces" />
+        </a>
+        <h1>Cadastre-se</h1>
+        <p>Crie sua conta para fazer pedidos.</p>
+      </div>
+
+      <form class="login-form" id="formCadastro">
+        <label>
+          Nome Completo
+          <input type="text" name="nome" id="nome" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" id="email" required />
+        </label>
+
+        <label>
+          Telefone
+          <input type="tel" name="telefone" id="telefone" placeholder="(13) 99999-9999" />
+        </label>
+
+        <label>
+          Senha (mínimo 6 caracteres)
+          <input type="password" name="senha" id="senha" required minlength="6" />
+        </label>
+
+        <button type="submit" class="btn btn--primary">Criar Conta</button>
+
+        <p class="login-form__alert" id="cadastroErro" aria-live="polite"></p>
+      </form>
+
+      <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem">
+        Já tem conta?
+        <a href="login.html" style="color: var(--cor-marrom); font-weight: 600">Faça login</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    const form = document.getElementById("formCadastro");
+    const alertaErro = document.getElementById("cadastroErro");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const dados = {
+        nome: document.getElementById("nome").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        telefone: document.getElementById("telefone").value.trim(),
+        senha: document.getElementById("senha").value,
+      };
+
+      alertaErro.textContent = "";
+
+      const resultado = Auth.cadastrar(dados);
+
+      if (resultado.success) {
+        alert("✅ Conta criada com sucesso! Faça login para continuar.");
+        window.location.href = "login.html";
+      } else {
+        alertaErro.textContent = `❌ ${resultado.erro}`;
+      }
+    });
+  </script>
+</body>
+
+</html>
