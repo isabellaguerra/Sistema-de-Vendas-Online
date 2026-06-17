@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido - Trilha dos Doces</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/pedido.css" />
+</head>
+
+<body>
+  <header class="pedido-header">
+    <div class="container pedido-header__content">
+      <a href="index.html" class="pedido-header__logo">
+        <img src="https://servidor-estaticos-ashy.vercel.app/trilhadoces.svg" alt="Trilha dos Doces"
+          style="height: 40px" />
+      </a>
+
+      <div class="pedido-header__user">
+        <span id="nomeUsuario"></span>
+        <button onclick="Auth.logout()" style="
+              background: transparent;
+              border: none;
+              cursor: pointer;
+              font-size: 1.2rem;
+            " title="Sair">
+          🚪
+        </button>
+      </div>
+    </div>
+  </header>
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <strong>Fazer Pedido</strong>
+    </div>
+  </nav>
+  <main class="pedido-page container">
+    <section class="pedido-produtos">
+      <h1 class="section-title">Monte seu pedido</h1>
+
+      <!-- 🔥 Container de produtos -->
+      <div class="cards" id="listaProdutos">
+        <!-- Produtos serão inseridos aqui via JavaScript -->
+        <p style="text-align: center; color: #7a6a55">
+          Carregando produtos...
+        </p>
+      </div>
+    </section>
+
+    <aside class="pedido-carrinho">
+      <h2>Seu pedido</h2>
+      <ul class="pedido-lista" id="listaPedido">
+        <!-- itens adicionados via JS -->
+      </ul>
+
+      <p class="pedido-total">Total: <span id="totalPedido">R$ 0,00</span></p>
+
+      <button id="btnFinalizar" class="btn btn--primary">
+        Finalizar pedido
+      </button>
+      <p class="pedido-msg" id="mensagemPedido" aria-live="polite"></p>
+    </aside>
+  </main>
+
+  <div class="modal-overlay" id="modalPagamento">
+    <div class="modal">
+      <div class="modal__header">
+        <h2>🛒 Finalizar Pedido</h2>
+        <button class="modal__close" id="fecharModal">×</button>
+      </div>
+
+      <div class="modal__body">
+        <div class="resumo-pedido">
+          <h3 style="margin-top: 0; color: var(--cor-marrom); font-size: 1rem">
+            Resumo do Pedido
+          </h3>
+          <div id="resumoItens"></div>
+          <div class="resumo-pedido__item">
+            <span>Total:</span>
+            <span id="resumoTotal">R$ 0,00</span>
+          </div>
+        </div>
+
+        <h3 style="
+              color: var(--cor-marrom);
+              font-size: 1rem;
+              margin-bottom: 1rem;
+            ">
+          Escolha a forma de pagamento:
+        </h3>
+
+        <div class="opcoes-pagamento">
+          <label class="opcao-pagamento">
+            <input type="radio" name="pagamento" value="whatsapp" checked />
+            <div class="opcao-pagamento__info">
+              <div class="opcao-pagamento__titulo">💬 WhatsApp</div>
+              <div class="opcao-pagamento__descricao">
+                Enviar pedido direto para a confeitaria
+              </div>
+            </div>
+          </label>
+
+          <label class="opcao-pagamento">
+            <input type="radio" name="pagamento" value="retirada" />
+            <div class="opcao-pagamento__info">
+              <div class="opcao-pagamento__titulo">🏪 Pagar na Retirada</div>
+              <div class="opcao-pagamento__descricao">
+                Pague em dinheiro ou cartão ao buscar
+              </div>
+            </div>
+          </label>
+
+          <label class="opcao-pagamento">
+            <input type="radio" name="pagamento" value="pix" />
+            <div class="opcao-pagamento__info">
+              <div class="opcao-pagamento__titulo">📱 PIX</div>
+              <div class="opcao-pagamento__descricao">
+                Transferência instantânea (chave será enviada)
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <label style="display: block; margin-top: 1rem">
+          <span style="font-size: 0.9rem; color: var(--cor-marrom)">Observações (opcional):</span>
+          <textarea id="observacoesPedido" rows="3" style="
+                width: 100%;
+                padding: 0.7rem;
+                border-radius: 8px;
+                border: 1px solid #ddd0b5;
+                font: inherit;
+                margin-top: 0.3rem;
+                resize: vertical;
+              " placeholder="Ex: Quero o bolo desse tal jeito com isso e aquilo, entregar após 18h..."></textarea>
+        </label>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--outline" id="cancelarPedido">Cancelar</button>
+        <button class="btn btn--primary" id="confirmarPedido">
+          Confirmar Pedido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="css/modal.css" />
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/produtos.js"></script>
+  <script src="js/pedido.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("🔍 Iniciando página de pedidos...");
+
+      const produtos = DB.produtos.getAll();
+      console.log("📦 Produtos no banco:", produtos.length);
+
+      if (produtos.length === 0) {
+        console.warn(
+          "⚠️ Nenhum produto encontrado! Criando produtos de exemplo...",
+        );
+        DB.utils.seed();
+      }
+
+      const container = document.getElementById("listaProdutos");
+      if (!container) {
+        console.error("❌ Elemento listaProdutos não encontrado!");
+        return;
+      }
+
+      console.log("🎨 Renderizando produtos...");
+      ProdutosUI.renderizar("listaProdutos");
+
+      const usuario = Auth.getUsuarioLogado();
+      if (usuario) {
+        const nomeElemento = document.getElementById("nomeUsuario");
+        if (nomeElemento) {
+          nomeElemento.textContent = `👤 ${usuario.nome.split(" ")[0]}`;
+        }
+        console.log("✅ Usuário logado:", usuario.nome);
+      } else {
+        console.error("❌ Nenhum usuário logado!");
+      }
+
+      console.log("✅ Página carregada com sucesso!");
+    });
+  </script>
+</body>
+
+</html>
