@@ -1,6 +1,6 @@
 Sistema completo de gestão de pedidos online para confeitaria, desenvolvido com tecnologias web modernas.
 
-📋 Sobre o Projeto
+📋 SOBRE O PROJETO 
 Trilha dos Doces é uma plataforma web completa para gerenciamento de uma confeitaria online. O sistema oferece funcionalidades desde o catálogo de produtos até o processamento de pedidos, incluindo um painel administrativo robusto para gestão do negócio.
 
 🎯 Principais Características
@@ -35,7 +35,7 @@ Frontend
 HTML5: Estrutura semântica e acessível
 CSS3:
 JavaScript (ES6+):
-Arquitetura
+ARQUITETURA
 MVC Pattern: Separação clara entre lógica e apresentação
 Component-based: Código modular e reutilizável
 LocalStorage Database: Sistema de persistência de dados client-side
